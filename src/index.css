@@ -14,8 +14,5 @@ code {
 
 a{
   text-decoration: none;
-}
-
-.white{
-  color: white;
+  color: inherit;
 }

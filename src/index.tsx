@@ -17,17 +17,25 @@ import App from './routes/App';
 import ErrorPage from "./error-page"
 import Signup from "./routes/signup/index"
 import PostPage from "./routes/PostPage"
-import SettingPage from './settings/SettingPage';
-import Profile from './settings/users/profile';
+import SettingPage from './routes/settings/SettingPage';
+import Profile from './routes/settings/users/profile';
+import PostID from "./routes/PostID"
+import About from './routes/settings/misc/About';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/"  errorElement={<ErrorPage/>} element={<App />}>
       <Route index element={<Navigate replace to="/post"/>}/>
-      <Route path="/post" element={<PostPage />} />
+      <Route path="/post" element={<PostPage />} >
+        {/*
+          Status: Feature not implemented 
+          <Route path="/:id" element={<PostID />} /> 
+        */}
+      </Route>
       <Route path="/signup" element={<Signup/>} />
       <Route path="/setting" element={<SettingPage/>}>
-        <Route path="profile/" element={<Profile/>} />
+        <Route path="/profile" element={<Profile/>} />
+        <Route path="/about" element={<About/>}/>
       </Route>
     </Route>
 
