@@ -62,7 +62,7 @@ export default function PostCreate() {
             const user: any = supabase.auth.user();
             const { data, status, error } = await supabase
                 .from("profiles")
-                .select("username")
+                .select("username, banned")
                 .eq("id", user.id)
                 .single()
 

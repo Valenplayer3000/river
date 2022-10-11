@@ -8,6 +8,7 @@ import {
     Stack,
     CircularProgress,
     Container,
+    Skeleton,
 } from "@mui/material"
 
 import Badges from "./Badges"
@@ -26,7 +27,7 @@ export default function Posts() {
             const { data, status, error } = await supabase
                 .from("Posts")
                 .select(
-                    "id, content, user_id, profiles ( username, creator, verified, donator, moderator, dev)"
+                    "id, content, user_id, profiles ( username, creator, verified, donator, moderator, dev, banned)"
                 )
                 .order("id", { ascending: false });
 
@@ -48,39 +49,54 @@ export default function Posts() {
     return (
         <>
             <div className="card-on">
-                {loading ? (
-                    <>
-                        <Container maxWidth="md" fixed>
-                                <CircularProgress sx={{marginInline: "auto"}} size={100} />
-                        </Container>
-                    </>
-                ) : (
-                    <>
-                        <Container maxWidth="md" fixed>
-                            <Stack gap={1}>
-                                {postdata.map((item: any) => (
-                                    <>
-                                        <Card key={item.id}>
-                                            <CardContent>
-                                                <Typography variant="h5" component="div">{item.profiles.username}</Typography>
-                                                <Stack gap={0.2} direction="row">
-                                                    {item.profiles.creator && <Badges isCreator />}
-                                                    {item.profiles.verified && <Badges isVerified />}
-                                                    {item.profiles.moderator && <Badges isMod />}
-                                                    {item.profiles.dev && <Badges isDev />}
-                                                    {item.profiles.donator && <Badges isDonator />}
-                                                </Stack>
-                                                <Typography variant="body1" component="p">
-                                                    {item.content}
-                                                </Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </>
-                                ))}
-                            </Stack>
-                        </Container>
-                    </>
-                )}
+                    {loading ? (
+                        <>
+                            <Container maxWidth="md" fixed>
+                                <Card>
+                                    <CardContent>
+                                        <Skeleton variant="text" sx={{ fontSize: '2rem' }} />
+                                        <Stack gap={0.2} direction="row">
+                                            <Skeleton variant="text" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
+                                            <Skeleton variant="text" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
+                                            <Skeleton variant="text" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
+                                            <Skeleton variant="text" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
+                                            <Skeleton variant="text" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
+                                        </Stack>
+                                        <Typography variant="body1" component="p">
+                                            <Skeleton variant="rounded" sx={{ height: 100 }} />
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Container>
+                        </>
+                    ) : (
+                        <>
+                            <Container maxWidth="md" fixed>
+                                <Stack gap={1}>
+                                    {postdata.map((item: any) => (
+                                        <>
+                                            <Card key={item.id}>
+                                                <CardContent>
+                                                    <Typography variant="h5" component="div">{item.profiles.username}</Typography>
+                                                    <Stack gap={0.2} direction="row">
+                                                        {item.profiles.creator && <Badges isCreator />}
+                                                        {item.profiles.verified && <Badges isVerified />}
+                                                        {item.profiles.moderator && <Badges isMod />}
+                                                        {item.profiles.dev && <Badges isDev />}
+                                                        {item.profiles.donator && <Badges isDonator />}
+                                                        {item.profiles.banned && <Badges isBanned/>}
+                                                    </Stack>
+                                                    <Typography variant="body1" component="p">
+                                                        {item.content}
+                                                    </Typography>
+                                                </CardContent>
+                                            </Card>
+                                        </>
+                                    ))}
+                                </Stack>
+                            </Container>
+                        </>
+                    )}
                 {error ? (
                     <>
                         <Container>

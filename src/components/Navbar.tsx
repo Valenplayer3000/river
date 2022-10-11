@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom"
 
-import SettingPage from "../settings/index"
 import LoginPage from "../login/index"
 
 import {
@@ -17,13 +16,15 @@ import {
     DialogContent,
     Button,
     DialogActions,
+    Typography,
 } from "@mui/material";
 
 import {
     Feed,
     Login,
     Logout,
-    People,
+    AccountCircle,
+    PersonAdd,
     Settings,
 } from "@mui/icons-material";
 
@@ -77,25 +78,17 @@ export default function Navbar() {
 
     return (
         <>
-            <Dialog open={settingsDialog} onClose={handleSettingDialogClose}>
-                <DialogTitle>Setting</DialogTitle>
-                <DialogContent>
-                    <SettingPage />
-                </DialogContent>
-                <DialogActions>
-                    <Link className="noborder" to="/setting">
-                        <Button>
-                            See all setting
-                        </Button>
-                    </Link>
-                </DialogActions>
-            </Dialog>
-
-            <Dialog open={loginSignDialog} onClose={handleLoginSignDialogClose}>
+            <Dialog maxWidth="md" open={loginSignDialog} onClose={handleLoginSignDialogClose}>
                 <DialogTitle>Login/Sign Up</DialogTitle>
                 <DialogContent>
                     <LoginPage />
                 </DialogContent>
+                <DialogActions>
+                    <Typography>You don't have account?</Typography>
+                    <Link to="/signup" className="noborder">
+                        <Button sx={{ m: 1 }} startIcon={<PersonAdd />} onClick={handleLoginSignDialogClose}>Create new Account</Button>
+                    </Link>
+                </DialogActions>
             </Dialog>
             <AppBar>
                 <Toolbar>
@@ -131,11 +124,13 @@ export default function Navbar() {
                         </IconButton>
                     </Link>
                     <IconButton onClick={handleOpen} color="inherit">
-                        <People />
+                        <AccountCircle />
                     </IconButton>
-                    <IconButton onClick={handleSettingDialogOpen} color="inherit">
-                        <Settings fontSize="small" />
-                    </IconButton>
+                    <Link className="white" to="/setting">
+                        <IconButton onClick={handleSettingDialogOpen} color="inherit">
+                            <Settings fontSize="small" />
+                        </IconButton>
+                    </Link>
                 </Toolbar>
             </AppBar>
         </>

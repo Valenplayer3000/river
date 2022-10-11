@@ -1,15 +1,11 @@
 import * as React from "react"
-import { Link } from "react-router-dom"
 
 import { supabase } from "../lib/supabase"
 
 import {
-    Alert,
     TextField,
     Button,
-    Typography,
     FormGroup,
-    Stack,
     Container,
     Box,
 } from "@mui/material";
@@ -66,12 +62,6 @@ export default function LoginPage() {
                             <Button sx={{ m: 1 }} type="submit" startIcon={<Login />}>Login</Button>
                         </FormGroup>
                     </form>
-                </Container>
-                <Container fixed>
-                    You don't have account?
-                    <Link className="noborder" to="signup">
-                        <Button sx={{ m: 1 }} startIcon={<PersonAdd />}>Create a Account</Button>
-                    </Link>
                 </Container>
             </Box>
         </>

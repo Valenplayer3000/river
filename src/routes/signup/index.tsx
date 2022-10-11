@@ -1,6 +1,6 @@
 import * as React from "react"
 import {supabase} from "../../lib/supabase"
-import { CircularProgress, Button, Container, FormGroup, Stack, TextField } from "@mui/material";
+import { CircularProgress, Button, Container, FormGroup, Stack, TextField, Typography } from "@mui/material";
 import { PersonAdd } from "@mui/icons-material";
 
 
@@ -65,6 +65,7 @@ export default function Singup() {
                             <FormGroup>
                                 <TextField required onChange={(e) => setConfirmPass(e.target.value)} label="Confirm Password" />
                             </FormGroup>
+                            <Typography><b>*</b> = Required</Typography>
                             <Button type="submit" variant="contained" startIcon={<PersonAdd/>}>Create</Button>
                         </Stack>
                     </form>
