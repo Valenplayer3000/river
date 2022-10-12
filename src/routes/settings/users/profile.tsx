@@ -3,7 +3,7 @@ import Badges from "../../../components/Badges"
 
 import { supabase } from "../../../lib/supabase"
 
-import { Box, TextField, Button, FormGroup, Typography, Stack, Card, CardContent, } from "@mui/material"
+import { Box, TextField, Button, FormGroup, Typography, Stack, Card, CardContent, Alert, } from "@mui/material"
 
 export default function Profile() {
     const [Uservalue, setUserValue] = React.useState(0)
@@ -87,7 +87,7 @@ export default function Profile() {
         <>
             {!session ? (
                 <>
-
+                    <Alert severity="warning">You need to sign in/sign up to enter profile page</Alert>
                 </>
             ) : (
                 <>
