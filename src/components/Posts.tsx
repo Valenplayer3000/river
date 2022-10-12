@@ -6,12 +6,14 @@ import {
     Typography,
     CardContent,
     Stack,
-    CircularProgress,
+    Divider,
     Container,
     Skeleton,
 } from "@mui/material"
 
 import Badges from "./Badges"
+import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm'
 
 export default function Posts() {
     // Get content, author from the database
@@ -49,58 +51,60 @@ export default function Posts() {
     return (
         <>
             <div className="card-on">
-                    {loading ? (
-                        <>
-                            <Container maxWidth="md" fixed>
-                                <Card>
-                                    <CardContent>
-                                        <Skeleton variant="text" sx={{ fontSize: '2rem' }} />
-                                        <Stack gap={0.2} direction="row">
-                                            <Skeleton variant="text" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
-                                            <Skeleton variant="text" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
-                                            <Skeleton variant="text" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
-                                            <Skeleton variant="text" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
-                                            <Skeleton variant="text" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
-                                        </Stack>
-                                        <Typography variant="body1" component="p">
-                                            <Skeleton variant="rounded" sx={{ height: 100 }} />
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Container>
-                        </>
-                    ) : (
-                        <>
-                            <Container maxWidth="md" fixed>
-                                <Stack gap={1}>
-                                    {postdata.map((item: any) => (
-                                        <>
-                                            <Card key={item.id}>
-                                                <CardContent>
-                                                    <Typography variant="h5" component="div">{item.profiles.username}</Typography>
-                                                    <Stack gap={0.2} direction="row">
-                                                        {item.profiles.creator && <Badges isCreator />}
-                                                        {item.profiles.verified && <Badges isVerified />}
-                                                        {item.profiles.moderator && <Badges isMod />}
-                                                        {item.profiles.dev && <Badges isDev />}
-                                                        {item.profiles.donator && <Badges isDonator />}
-                                                        {item.profiles.banned && <Badges isBanned/>}
-                                                    </Stack>
-                                                    <Typography variant="body1" component="p">
+                {loading ? (
+                    <>
+                        <Container maxWidth="md" fixed>
+                            <Card elevation={12}>
+                                <CardContent>
+                                    <Skeleton variant="text" animation="wave" sx={{ fontSize: '2rem' }} />
+                                    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 0.1, sm: 0.2, md: 0.3 }}>
+                                        <Skeleton variant="text" animation="wave" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
+                                        <Skeleton variant="text" animation="wave" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
+                                        <Skeleton variant="text" animation="wave" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
+                                        <Skeleton variant="text" animation="wave" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
+                                        <Skeleton variant="text" animation="wave" sx={{ fontSize: '2rem', width: 100, height: 40 }} />
+                                    </Stack>
+                                    <Typography variant="body1">
+                                        <Skeleton variant="rounded" animation="wave" sx={{ height: 100 }} />
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Container>
+                    </>
+                ) : (
+                    <>
+                        <Container maxWidth="md" fixed>
+                            <Stack gap={1}>
+                                {postdata.map((item: any) => (
+                                    <>
+                                        <Card elevation={5} key={item.id}>
+                                            <CardContent>
+                                                <Typography variant="h5" component="div">{item.profiles.username}</Typography>
+                                                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 0.2, sm: 0.2, md: 0.2 }}>
+                                                    {item.profiles.creator && <Badges isCreator />}
+                                                    {item.profiles.verified && <Badges isVerified />}
+                                                    {item.profiles.moderator && <Badges isMod />}
+                                                    {item.profiles.dev && <Badges isDev />}
+                                                    {item.profiles.donator && <Badges isDonator />}
+                                                    {item.profiles.banned && <Badges isBanned />}
+                                                </Stack>
+                                                <Typography>
+                                                    <ReactMarkdown components={{ h1: 'h2',}} remarkPlugins={[remarkGfm]}>
                                                         {item.content}
-                                                    </Typography>
-                                                </CardContent>
-                                            </Card>
-                                        </>
-                                    ))}
-                                </Stack>
-                            </Container>
-                        </>
-                    )}
+                                                    </ReactMarkdown>
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </>
+                                ))}
+                            </Stack>
+                        </Container>
+                    </>
+                )}
                 {error ? (
                     <>
                         <Container>
-                            <Card variant="outlined" elevation={12}>
+                            <Card variant="outlined">
                                 <div className="forcecenter">
                                     <Typography variant="h4">{error}</Typography>{" "}
                                     <Typography>

@@ -1,5 +1,7 @@
-import { AccountBox, ExpandMore } from "@mui/icons-material"
+import { AccountBox, Info } from "@mui/icons-material"
 import { Alert, Container, List, ListItem, ListItemButton, ListItemIcon } from "@mui/material"
+
+import { Link } from "react-router-dom"
 
 export default function SettingPage() {
     return (
@@ -8,18 +10,20 @@ export default function SettingPage() {
                 This page is incomplete right now. Come back later!
             </Alert>
             <List>
+                <Link to="/profile">
+                    <ListItem>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <AccountBox />
+                            </ListItemIcon>
+                            Profile
+                        </ListItemButton>
+                    </ListItem>
+                </Link>
                 <ListItem>
                     <ListItemButton>
                         <ListItemIcon>
-                            <AccountBox />
-                        </ListItemIcon>
-                        Profile
-                    </ListItemButton>
-                </ListItem>
-                <ListItem>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <AccountBox />
+                            <Info />
                         </ListItemIcon>
                         About River
                     </ListItemButton>

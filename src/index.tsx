@@ -6,6 +6,7 @@ import {
   Route,
   createRoutesFromElements,
   Navigate,
+  Routes,
 } from "react-router-dom";
 
 import './index.css';
@@ -24,19 +25,21 @@ import About from './routes/settings/misc/About';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/"  errorElement={<ErrorPage/>} element={<App />}>
-      <Route index element={<Navigate replace to="/post"/>}/>
+    <Route path="/" errorElement={<ErrorPage />} element={<App />}>
+      <Route index element={<Navigate replace to="/post" />} />
       <Route path="/post" element={<PostPage />} >
         {/*
           Status: Feature not implemented 
           <Route path="/:id" element={<PostID />} /> 
         */}
       </Route>
-      <Route path="/signup" element={<Signup/>} />
-      <Route path="/setting" element={<SettingPage/>}>
-        <Route path="/profile" element={<Profile/>} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/setting/" element={<SettingPage />} />
+      <Route path="/profile" element={<Profile />} />
+      {/* 
+        Status: Currently Disabled
         <Route path="/about" element={<About/>}/>
-      </Route>
+      */}
     </Route>
 
   )
