@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -8,6 +8,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+    display: block;
+    width: fit-content;
     color:#cad3f5;
     padding: 1px 3px;
     border-radius: 5px;

@@ -9,8 +9,9 @@ export default function ErrorPage() {
     <>    
         <Container className="card-on">
             <Box>
-                <Card>
+                <Card sx={{p:2}}>
                     <CardHeader title="Error" subheader="Something wwong whiwe twying to weach @~@" />
+                    <code>Machine. You should fix your error NOW.</code>
                 </Card>
             </Box>
         </Container>

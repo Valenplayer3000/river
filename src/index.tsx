@@ -6,12 +6,10 @@ import {
   Route,
   createRoutesFromElements,
   Navigate,
-  Routes,
 } from "react-router-dom";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import './index.css';
-
-import { CssBaseline } from '@mui/material';
 
 
 import App from './routes/App';
@@ -22,6 +20,8 @@ import SettingPage from './routes/settings/SettingPage';
 import Profile from './routes/settings/users/profile';
 import PostID from "./routes/PostID"
 import About from './routes/settings/misc/About';
+import BlogsPage from './routes/blogs/index';
+import { CssBaseline } from '@mui/material';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,14 +36,52 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<Signup />} />
       <Route path="/setting/" element={<SettingPage />} />
       <Route path="/profile" element={<Profile />} />
-      {/* 
-        Status: Currently Disabled
-        <Route path="/about" element={<About/>}/>
-      */}
+      <Route path="/about" element={<About />} />
+      <Route path="/blog" element={<BlogsPage />} />
     </Route>
 
   )
 )
+
+
+
+export const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#89b4fa',
+    },
+    secondary: {
+      main: '#cba6f7',
+    },
+    background: {
+      default: '#1e1e2e',
+      paper: '#313244',
+    },
+    divider: '#6c7086',
+    success: {
+      main: '#a6e3a1',
+    },
+    text: {
+      primary: '#cdd6f4',
+    },
+    error: {
+      main: '#f38ba8',
+    },
+    warning: {
+      main: '#fab387',
+    },
+    info: {
+      main: '#89dceb',
+    },
+  },
+  shape: {
+    borderRadius: 0,
+  },
+  typography: {
+    fontFamily: 'JetBrains Mono',
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -91,8 +129,12 @@ root.render(
       <link rel="icon" href="favicon.ico" />
       <link rel="manifest" href="/manifest.json" />
     </head>
-    <CssBaseline>
-      <RouterProvider router={router} />
-    </CssBaseline>
+
+    <ThemeProvider theme={theme}>
+      <CssBaseline>
+        <RouterProvider router={router} />
+      </CssBaseline>
+    </ThemeProvider >
+
   </React.StrictMode>
 );

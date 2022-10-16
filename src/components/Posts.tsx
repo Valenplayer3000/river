@@ -6,14 +6,13 @@ import {
     Typography,
     CardContent,
     Stack,
-    Divider,
     Container,
     Skeleton,
+    Alert,
 } from "@mui/material"
 
 import Badges from "./Badges"
 import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
 
 export default function Posts() {
     // Get content, author from the database
@@ -46,8 +45,9 @@ export default function Posts() {
         }
     }
     React.useEffect(() => {
-        getPosts();
-    }, []);
+            getPosts()
+        },
+        []);
     return (
         <>
             <div className="card-on">
@@ -88,8 +88,8 @@ export default function Posts() {
                                                     {item.profiles.donator && <Badges isDonator />}
                                                     {item.profiles.banned && <Badges isBanned />}
                                                 </Stack>
-                                                <Typography>
-                                                    <ReactMarkdown components={{ h1: 'h2',}} remarkPlugins={[remarkGfm]}>
+                                                <Typography variant="body1" component="p">
+                                                    <ReactMarkdown components={{ h1: 'h3', }}>
                                                         {item.content}
                                                     </ReactMarkdown>
                                                 </Typography>
@@ -104,12 +104,13 @@ export default function Posts() {
                 {error ? (
                     <>
                         <Container>
-                            <Card variant="outlined">
+                            <Card variant="outlined" sx={{p:2}}>
                                 <div className="forcecenter">
-                                    <Typography variant="h4">{error}</Typography>{" "}
-                                    <Typography>
-                                        Oppsie! We awe unabwe to weach ouw database. Check at DevTools at Consowe! {`>`}~{`<`}
-                                    </Typography>
+                                    <Alert sx={{m:1}} variant="filled" severity="error">Somethiing wwong when weaching the database! {`>`}~{`<`}</Alert>{" "}
+                                    <Alert sx={{m:1}} variant="filled" severity="info">
+                                        Error Message:
+                                            {error}
+                                    </Alert>
                                 </div>
                             </Card>
                         </Container>

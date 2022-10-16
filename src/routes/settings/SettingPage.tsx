@@ -20,6 +20,7 @@ export default function SettingPage() {
                         </ListItemButton>
                     </ListItem>
                 </Link>
+                <Link to="/about">
                 <ListItem>
                     <ListItemButton>
                         <ListItemIcon>
@@ -28,6 +29,7 @@ export default function SettingPage() {
                         About River
                     </ListItemButton>
                 </ListItem>
+                </Link>
             </List>
         </>
     )

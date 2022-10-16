@@ -70,8 +70,7 @@ export default function PostCreate() {
                 throw error;
             }
 
-            setName(data.username);
-            setUserID(user.id);
+            if (data) return data;
 
         }
 
@@ -120,7 +119,10 @@ export default function PostCreate() {
     }
 
     React.useEffect(() => {
-        getUsername();
+        getUsername().then((user) => {
+            setUserID(user.id);
+            setName(user.name);
+        });
     }, [session])
 
     return (
@@ -143,7 +145,7 @@ export default function PostCreate() {
                             ) : (
                                 <>
                                     <form onSubmit={SendContent}>
-                                        <TextField value={content || ""} onChange={(e) => ContentChange(e)} placeholder="Write your own text/sentence" multiline fullWidth />
+                                        <TextField value={content || ""} onChange={(e) => ContentChange(e)} placeholder="Write your own text/sentence" multiline fullWidth/>
                                         <DialogActions>
                                             <Button startIcon={<Close />} onClick={handleDialogClose}>
                                                 Close

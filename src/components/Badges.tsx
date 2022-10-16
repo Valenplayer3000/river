@@ -13,7 +13,7 @@ interface badges {
 export default function Badges({ isCreator, isDev, isVerified, isDonator, isMod, isBanned} : badges){
     return (
         <>
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={1.5}>
 
                 {isCreator && (<Chip color="secondary" variant="outlined" size="small" label="Creator"/>)}
 

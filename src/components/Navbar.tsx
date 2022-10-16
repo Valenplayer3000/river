@@ -26,9 +26,10 @@ import {
     AccountCircle,
     PersonAdd,
     Settings,
+    Article,
 } from "@mui/icons-material";
 
-import { supabase } from "../lib/supabase/index";
+import { supabase } from "../lib/supabase";
 
 export default function Navbar() {
     const [settingsDialog, setSettingDialog] = React.useState(false)
@@ -126,11 +127,17 @@ export default function Navbar() {
                     <IconButton onClick={handleOpen} color="inherit">
                         <AccountCircle />
                     </IconButton>
+                    <Link className="white" to="/blog">
+                        <IconButton color="inherit">
+                            <Article fontSize="small" />
+                        </IconButton>
+                    </Link>
                     <Link className="white" to="/setting">
-                        <IconButton onClick={handleSettingDialogOpen} color="inherit">
+                        <IconButton color="inherit">
                             <Settings fontSize="small" />
                         </IconButton>
                     </Link>
+                    
                 </Toolbar>
             </AppBar>
         </>
