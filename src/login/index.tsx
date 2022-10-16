@@ -59,7 +59,7 @@ export default function LoginPage() {
                         <FormGroup>
                             <TextField type="email" onChange={(e) => setEmail(e.target.value)} required sx={{ m: 1 }} fullWidth label="Email" />
                             <TextField type="password" sx={{ m: 1 }} fullWidth label="Password" onChange={(e) => setPassword(e.target.value)} required />
-                            <Button sx={{ m: 1 }} type="submit" startIcon={<Login />}>Login</Button>
+                            <Button variant="contained" sx={{ m: 1 }} type="submit" startIcon={<Login />}>Login</Button>
                         </FormGroup>
                     </form>
                 </Container>
