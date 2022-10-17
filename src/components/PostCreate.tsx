@@ -1,5 +1,5 @@
 import * as React from "react"
-import { supabase } from "../lib/supabase"
+import {supabase} from "../lib/supabase"
 
 import {
     CircularProgress,
@@ -7,7 +7,6 @@ import {
     DialogActions,
     DialogTitle,
     TextField,
-    Alert,
     DialogContent,
     Button,
     Fab,
@@ -15,7 +14,7 @@ import {
 
 import AddBox from "@mui/icons-material/AddBox";
 
-import { Close, Send } from "@mui/icons-material";
+import {Close, Send} from "@mui/icons-material";
 
 
 export default function PostCreate() {
@@ -47,9 +46,7 @@ export default function PostCreate() {
     const ContentChange = (e: any) => {
         if (e.target.value.length === 250) {
             window.alert("You have weached the chawactew wimit!")
-        }
-
-        else {
+        } else {
             setContent(e.target.value)
         }
     }
@@ -60,9 +57,9 @@ export default function PostCreate() {
             setError("")
 
             const user: any = supabase.auth.user();
-            const { data, status, error } = await supabase
+            const {data, status, error} = await supabase
                 .from("profiles")
-                .select("username, banned")
+                .select("username")
                 .eq("id", user.id)
                 .single()
 
@@ -72,14 +69,10 @@ export default function PostCreate() {
 
             if (data) return data;
 
-        }
-
-        catch (e: string | any) {
+        } catch (e: string | any) {
             setError("Faiwed to fetch usewname!")
             console.error(e.message || e.error_message);
-        }
-
-        finally {
+        } finally {
             setLoading(false);
         }
     }
@@ -100,20 +93,16 @@ export default function PostCreate() {
                 user_id: userID,
             }
 
-            let { error } = await supabase
+            let {error} = await supabase
                 .from("Posts")
-                .upsert(update, { returning: "minimal" })
+                .upsert(update, {returning: "minimal"})
 
             if (error) {
                 throw error;
             }
-        }
-
-        catch (error: any) {
+        } catch (error: any) {
             setError(error.message);
-        }
-
-        finally {
+        } finally {
             setLoading(false);
         }
     }
@@ -127,37 +116,41 @@ export default function PostCreate() {
 
     return (
         <>
-            <Fab color="primary" variant="extended" onClick={handleDialogOpen} sx={{ position: 'fixed', bottom: 14, right: 14 }}>
-                <AddBox />
-                New Post
-            </Fab>
+
+            {!session ? (
+                <>
+                    <Fab disabled onClick={handleDialogOpen}
+                         sx={{position: 'fixed', bottom: 14, right: 14}}>
+                        <AddBox/>
+                    </Fab>
+                </>
+            ) : (
+                <>
+                    <Fab color="secondary" variant="extended" onClick={handleDialogOpen}
+                         sx={{position: 'fixed', bottom: 14, right: 14}}>
+                        <AddBox/>
+                        New Post
+                    </Fab>
+                </>
+            )}
 
             <Dialog open={dialogOpen} onClose={handleDialogClose}>
                 <DialogTitle>New Post</DialogTitle>
                 {loading ? (<CircularProgress />) : (
                     <>
                         <DialogContent>
-                            {!session ? (
-                                <>
-                                    <Alert severity="error">You need to login in order to send a post!</Alert>
-                                    <code>{error}</code>
-                                </>
-                            ) : (
-                                <>
-                                    <form onSubmit={SendContent}>
-                                        <TextField value={content || ""} onChange={(e) => ContentChange(e)} placeholder="Write your own text/sentence" multiline fullWidth/>
-                                        <DialogActions>
-                                            <Button startIcon={<Close />} onClick={handleDialogClose}>
-                                                Close
-                                            </Button>
-                                            <Button startIcon={<Send />} type="submit">
-                                                Send Post
-                                            </Button>
-                                        </DialogActions>
-                                    </form>
-                                </>
-                            )}
-
+                            <form onSubmit={SendContent}>
+                                <TextField value={content || ""} onChange={(e) => ContentChange(e)}
+                                           placeholder="Write your own text/sentence" multiline fullWidth/>
+                                <DialogActions>
+                                    <Button startIcon={<Close/>} onClick={handleDialogClose}>
+                                        Close
+                                    </Button>
+                                    <Button startIcon={<Send/>} type="submit">
+                                        Send Post
+                                    </Button>
+                                </DialogActions>
+                            </form>
                         </DialogContent>
                     </>
                 )}

@@ -8,7 +8,7 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-    display: block;
+    display: inline-block;
     width: fit-content;
     color:#cad3f5;
     padding: 1px 3px;

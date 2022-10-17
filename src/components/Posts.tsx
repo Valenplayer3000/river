@@ -54,7 +54,7 @@ export default function Posts() {
                 {loading ? (
                     <>
                         <Container maxWidth="md" fixed>
-                            <Card elevation={12}>
+                            <Card variant="outlined">
                                 <CardContent>
                                     <Skeleton variant="text" animation="wave" sx={{ fontSize: '2rem' }} />
                                     <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 0.1, sm: 0.2, md: 0.3 }}>
@@ -77,7 +77,7 @@ export default function Posts() {
                             <Stack gap={1}>
                                 {postdata.map((item: any) => (
                                     <>
-                                        <Card elevation={5} key={item.id}>
+                                        <Card variant="outlined" key={item.id}>
                                             <CardContent>
                                                 <Typography variant="h5" component="div">{item.profiles.username}</Typography>
                                                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 0.2, sm: 0.2, md: 0.2 }}>

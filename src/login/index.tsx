@@ -9,7 +9,7 @@ import {
     Container,
     Box,
 } from "@mui/material";
-import { PersonAdd, Login } from "@mui/icons-material";
+import { Login } from "@mui/icons-material";
 
 export default function LoginPage() {
 

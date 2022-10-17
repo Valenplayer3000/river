@@ -1,6 +1,6 @@
 import { Container } from "@mui/material"
-import Post from "../components/Posts"
-import CreatePost from "../components/PostCreate"
+import Post from "../../components/Posts"
+import CreatePost from "../../components/PostCreate"
 
 
 export default function PostPage() {

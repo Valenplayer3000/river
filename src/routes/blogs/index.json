@@ -1,5 +1,12 @@
 [
   {
+    "id": 4,
+    "title": "Changes for currect dark theme and Bug Fixes (Version 1.5.1)",
+    "subheader": "A bit for rounding some components.",
+    "description": "Fixed some issue at `CreatePost.tsx` that casued to Guest allowing to post without signing up. But posting will cause issue as Guest. Also I fixed some css issue and rounded some components."
+
+  },
+  {
     "id": 3,
     "title": "New dark mode at River and more (Version 1.5)",
     "subheader": "The fog is coming",
