@@ -26,11 +26,11 @@ export default function Posts() {
 
             // Thanks @stationarystation for this contribution
             const { data, status, error } = await supabase
-                .from("Posts")
-                .select(
-                    "id, content, user_id, profiles ( username, creator, verified, donator, moderator, dev, banned)"
-                )
-                .order("id", { ascending: false });
+            .from("Posts")
+            .select(
+                    "id, content, profiles ( username, creator, verified, donator, moderator, dev)"
+                    )
+            .order("id", { ascending: false });
 
             if (error && status !== 406) {
                 throw error;
@@ -38,12 +38,13 @@ export default function Posts() {
             // Thanks @stationarystation for this contribution x2
             if (data) setPostData(data);
         } catch (e: string | any) {
-            setError("Oppsie! We awe unabwe to weach ouw database. Check at DevTools at Consowe! >~<");
+            setError("Unable to connect the database...");
             console.error(e.message || e.error_message);
         } finally {
             setLoading(false);
         }
     }
+
     React.useEffect(() => {
             getPosts()
         },
@@ -106,9 +107,9 @@ export default function Posts() {
                         <Container>
                             <Card variant="outlined" sx={{p:2}}>
                                 <div className="forcecenter">
-                                    <Alert sx={{m:1}} variant="filled" severity="error">Somethiing wwong when weaching the database! {`>`}~{`<`}</Alert>{" "}
+                                    <Alert sx={{m:1}} variant="filled" severity="error">Somethiing wwong when weaching the database! ({`>`}~{`<`})</Alert>{" "}
                                     <Alert sx={{m:1}} variant="filled" severity="info">
-                                        Error Message:
+                                        Error Message: {""}
                                             {error}
                                     </Alert>
                                 </div>

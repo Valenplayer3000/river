@@ -1,5 +1,12 @@
 [
   {
+    "id": 5,
+    "title": "CreatePost.tsx disabled (1.5.2)",
+    "subheader": "Database need fix",
+    "description": "I'm working on a fix that fixes critical bug that still able to post in `NULL` on their `username` and `user_id`"
+
+  },
+  {
     "id": 4,
     "title": "Changes for currect dark theme and Bug Fixes (Version 1.5.1)",
     "subheader": "A bit for rounding some components.",

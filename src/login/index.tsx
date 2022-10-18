@@ -19,37 +19,29 @@ export default function LoginPage() {
     const [password, setPassword] = React.useState<string>("");
 
     const handleLogin = async (e: any) => {
-        e.preventDefault();
+    e.preventDefault();
 
-        try {
-            setLoading(true);
-            setError("");
-
-            const { error } = await supabase.auth.signIn({
-                email,
-                password,
-            });
-
-            console.info("Signning In!")
-
-            if (error) {
-                setError(error.message)
-                throw error;
-            }
-
-        }
-
-        catch (error) {
-            //@ts-ignore
-            setError(error.error_description || error.message)
-            //@ts-ignore
-            console.error(error.error_description || error.message)
-        }
-
-        finally {
-            setLoading(false)
-        }
+    try {
+      setLoading(true);
+      setError("");
+      const { error } = await supabase.auth.signIn({
+        email,
+        password,
+      });
+      console.log("Logging in...");
+      if (error) {
+        setError(error.message);
+        throw error;
+      }
+    } catch (error) {
+      // @ts-ignore
+      setError(error.error_description || error.message);
+      // @ts-ignore
+      console.error(error.error_description || error.message);
+    } finally {
+      setLoading(false);
     }
+    };
 
     return (
         <>

@@ -28,15 +28,6 @@ export default function PostCreate() {
         setDialogOpen(true)
     }
 
-
-    React.useEffect(() => {
-        setSession(supabase.auth.session());
-
-        supabase.auth.onAuthStateChange((_event, session) => {
-            setSession(session);
-        })
-    }, [])
-
     const [name, setName] = React.useState<string>("Unknow")
     const [loading, setLoading] = React.useState<boolean>(false);
     const [content, setContent] = React.useState<string>("");
@@ -80,34 +71,38 @@ export default function PostCreate() {
     const SendContent = async (e: any) => {
         e.preventDefault();
 
-        if (!e) throw "Something wwong while sending a post to database"
-
-        if (name === null) throw "Something wwong when sending a post: null";
-
+        if (!e) throw "Expected something to comment.";
+        if (name === null) throw "Error when sending post.";
         try {
             setLoading(true);
 
-            const update = {
+            const updates = {
                 name,
                 content,
-                user_id: userID,
-            }
+            };
 
-            let {error} = await supabase
-                .from("Posts")
-                .upsert(update, {returning: "minimal"})
+            let {error} = await supabase.from("Posts").upsert(updates, {
+                returning: "minimal",
+            });
 
             if (error) {
                 throw error;
             }
         } catch (error: any) {
+            alert(error.message);
             setError(error.message);
         } finally {
             setLoading(false);
         }
-    }
+    };
 
     React.useEffect(() => {
+        setSession(supabase.auth.session());
+
+        supabase.auth.onAuthStateChange((_event, session) => {
+            setSession(session);
+        })
+
         getUsername().then((user) => {
             setUserID(user.id);
             setName(user.name);
@@ -126,17 +121,16 @@ export default function PostCreate() {
                 </>
             ) : (
                 <>
-                    <Fab color="secondary" variant="extended" onClick={handleDialogOpen}
+                    <Fab color="secondary" disabled onClick={handleDialogOpen}
                          sx={{position: 'fixed', bottom: 14, right: 14}}>
-                        <AddBox/>
-                        New Post
+                        <AddBox />
                     </Fab>
                 </>
             )}
 
             <Dialog open={dialogOpen} onClose={handleDialogClose}>
                 <DialogTitle>New Post</DialogTitle>
-                {loading ? (<CircularProgress />) : (
+                {loading ? (<CircularProgress/>) : (
                     <>
                         <DialogContent>
                             <form onSubmit={SendContent}>
