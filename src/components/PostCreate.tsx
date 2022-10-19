@@ -58,13 +58,15 @@ export default function PostCreate() {
                 throw error;
             }
 
-            if (data) return data;
+            setName(data.username);
+            setUserID(user.id);
 
         } catch (e: string | any) {
             setError("Faiwed to fetch usewname!")
             console.error(e.message || e.error_message);
         } finally {
             setLoading(false);
+            
         }
     }
 
@@ -79,6 +81,7 @@ export default function PostCreate() {
             const updates = {
                 name,
                 content,
+                user_id: userID,
             };
 
             let {error} = await supabase.from("Posts").upsert(updates, {
@@ -103,10 +106,7 @@ export default function PostCreate() {
             setSession(session);
         })
 
-        getUsername().then((user) => {
-            setUserID(user.id);
-            setName(user.name);
-        });
+        getUsername()
     }, [session])
 
     return (
@@ -121,9 +121,10 @@ export default function PostCreate() {
                 </>
             ) : (
                 <>
-                    <Fab color="secondary" disabled onClick={handleDialogOpen}
+                    <Fab color="secondary" variant="extended" onClick={handleDialogOpen}
                          sx={{position: 'fixed', bottom: 14, right: 14}}>
                         <AddBox />
+                        New Post
                     </Fab>
                 </>
             )}

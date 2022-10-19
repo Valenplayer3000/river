@@ -15,7 +15,7 @@ export default function Badges({ isCreator, isDev, isVerified, isDonator, isMod,
         <>
             <Stack direction="row" spacing={1.5}>
 
-                {isCreator && (<Chip color="secondary" variant="outlined" size="small" label="Creator"/>)}
+                {isCreator && (<Chip color="success" variant="outlined" size="small" label="Creator"/>)}
 
                 {isDev && (<Chip color="secondary" variant="outlined" size="small"  label="Dev"/>)}
                 

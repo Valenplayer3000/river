@@ -1,5 +1,12 @@
 [
   {
+    "id": 6,
+    "title": "CreatePost.tsx enabled and uuids working (1.5.3)",
+    "subheader": "Thanks Numeral for literally helping (a bit) at signup page",
+    "description": "I fixed the critical bug, and some changes at some components"
+
+  },
+  {
     "id": 5,
     "title": "CreatePost.tsx disabled (1.5.2)",
     "subheader": "Database need help, also someone need devs",
