@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 export default function SettingPage() {
     return (
         <>
-            <Alert severity="warning">
+            <Alert variant="filled" severity="warning">
                 This page is incomplete right now. Come back later!
             </Alert>
             <List>
