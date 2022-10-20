@@ -12,6 +12,7 @@ code {
     width: fit-content;
     color:#cad3f5;
     padding: 1px 3px;
+    border: 1px solid #6e738d;
     border-radius: 5px;
     background: #24273a;
 }
