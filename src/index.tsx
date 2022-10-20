@@ -27,12 +27,8 @@ const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" errorElement={<ErrorPage/>} element={<App/>}>
             <Route index element={<Navigate replace to="/post"/>}/>
-            <Route path="/post" element={<PostPage/>}>
-            {/*
-                Status: Feature not implemented 
-                <Route path="/:id" element={<PostID />} /> 
-            */}
-            </Route>
+            <Route path="/post" element={<PostPage/>} />
+            <Route path="post/:id" element={<PostID />} /> 
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/setting/" element={<SettingPage/>}/>
             <Route path="/profile" element={<Profile/>}/>
@@ -103,49 +99,6 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
     <React.StrictMode>
-        <head>
-            {/* The title of the page. */}
-            <title>River (Open Beta)</title>
-
-            {/* For social media. */}
-            <meta
-                name="description"
-                content="A new way to communicate with friends"
-            />
-            <meta property="og:url" content="https://rivermain.vercel.app"/>
-            <meta property="og:type" content="website"/>
-            <meta property="og:title" content="River (Open Beta)"/>
-            <meta
-                property="og:description"
-                content="A new way to communicate with friends"
-            />
-            <meta
-                property="og:image"
-                content="https://user-images.githubusercontent.com/64864880/191989005-40c643d1-aad9-4031-a923-861d9e932ecb.png"
-            />
-
-            <meta
-                name="twitter:card"
-                content="A new way to communicate with friends"
-            />
-            <meta property="twitter:domain" content="rivermain.vercel.app"/>
-            <meta property="twitter:url" content="https://rivermain.vercel.app"/>
-            <meta name="twitter:title" content="River (Open Beta)"/>
-            <meta
-                name="twitter:description"
-                content="A new way to communicate with friends"
-            />
-            <meta
-                name="twitter:image"
-                content="https://user-images.githubusercontent.com/64864880/191989005-40c643d1-aad9-4031-a923-861d9e932ecb.png"
-            />
-
-            {/* For the PWA. */}
-
-            <link rel="icon" href="favicon.ico"/>
-            <link rel="manifest" href="/manifest.json"/>
-        </head>
-
         <ThemeProvider theme={theme}>
             <CssBaseline>
                 <RouterProvider router={router}/>

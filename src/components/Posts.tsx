@@ -13,6 +13,7 @@ import {
 
 import Badges from "./Badges"
 import ReactMarkdown from "react-markdown";
+import {Link} from "react-router-dom"
 
 export default function Posts() {
     // Get content, author from the database
@@ -26,11 +27,11 @@ export default function Posts() {
 
             // Thanks @stationarystation for this contribution
             const { data, status, error } = await supabase
-            .from("Posts")
-            .select(
+                .from("Posts")
+                .select(
                     "id, content, profiles ( username, creator, verified, donator, moderator, dev)"
-                    )
-            .order("id", { ascending: false });
+                )
+                .order("id", { ascending: false });
 
             if (error && status !== 406) {
                 throw error;
@@ -46,8 +47,8 @@ export default function Posts() {
     }
 
     React.useEffect(() => {
-            getPosts()
-        },
+        getPosts()
+    },
         []);
     return (
         <>
@@ -78,24 +79,26 @@ export default function Posts() {
                             <Stack gap={1}>
                                 {postdata.map((item: any) => (
                                     <>
-                                        <Card variant="outlined" key={item.id}>
-                                            <CardContent>
-                                                <Typography variant="h5" component="div">{item.profiles.username}</Typography>
-                                                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 0.2, sm: 0.2, md: 0.2 }}>
-                                                    {item.profiles.creator && <Badges isCreator />}
-                                                    {item.profiles.verified && <Badges isVerified />}
-                                                    {item.profiles.moderator && <Badges isMod />}
-                                                    {item.profiles.dev && <Badges isDev />}
-                                                    {item.profiles.donator && <Badges isDonator />}
-                                                    {item.profiles.banned && <Badges isBanned />}
-                                                </Stack>
-                                                <Typography variant="body1" component="p">
-                                                    <ReactMarkdown components={{ h1: 'h3', }}>
-                                                        {item.content}
-                                                    </ReactMarkdown>
-                                                </Typography>
-                                            </CardContent>
-                                        </Card>
+                                        <Link to={"/post/" + item.id}>
+                                            <Card variant="outlined" key={item.id}>
+                                                <CardContent>
+                                                    <Typography variant="h5" component="div">{item.profiles.username}</Typography>
+                                                    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 0.2, sm: 0.2, md: 0.2 }}>
+                                                        {item.profiles.creator && <Badges isCreator />}
+                                                        {item.profiles.verified && <Badges isVerified />}
+                                                        {item.profiles.moderator && <Badges isMod />}
+                                                        {item.profiles.dev && <Badges isDev />}
+                                                        {item.profiles.donator && <Badges isDonator />}
+                                                        {item.profiles.banned && <Badges isBanned />}
+                                                    </Stack>
+                                                    <Typography variant="body1" component="p">
+                                                        <ReactMarkdown components={{ h1: 'h3', }}>
+                                                            {item.content}
+                                                        </ReactMarkdown>
+                                                    </Typography>
+                                                </CardContent>
+                                            </Card>
+                                        </Link>
                                     </>
                                 ))}
                             </Stack>
@@ -105,12 +108,12 @@ export default function Posts() {
                 {error ? (
                     <>
                         <Container>
-                            <Card variant="outlined" sx={{p:2}}>
+                            <Card variant="outlined" sx={{ p: 2 }}>
                                 <div className="forcecenter">
-                                    <Alert sx={{m:1}} variant="filled" severity="error">Somethiing wwong when weaching the database! ({`>`}~{`<`})</Alert>{" "}
-                                    <Alert sx={{m:1}} variant="filled" severity="info">
+                                    <Alert sx={{ m: 1 }} variant="filled" severity="error">Something wwong when weaching the database! ({`>`}~{`<`})</Alert>{" "}
+                                    <Alert sx={{ m: 1 }} variant="filled" severity="info">
                                         Error Message: {""}
-                                            {error}
+                                        {error}
                                     </Alert>
                                 </div>
                             </Card>

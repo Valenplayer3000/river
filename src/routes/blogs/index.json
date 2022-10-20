@@ -1,5 +1,12 @@
 [
   {
+    "id": 7,
+    "title": "JWT Issue (1.5.6)",
+    "subheader": "How the hell did the JWT key expired?",
+    "description": "I having issue at JWT key being expired right now, I'm trying to figure it out how to fix."
+
+  },
+  {
     "id": 6,
     "title": "CreatePost.tsx enabled and uuids working (1.5.3)",
     "subheader": "Thanks Numeral for literally helping (a bit) at signup page",
