@@ -28,10 +28,10 @@ const router = createBrowserRouter(
         <Route path="/" errorElement={<ErrorPage/>} element={<App/>}>
             <Route index element={<Navigate replace to="/post"/>}/>
             <Route path="/post" element={<PostPage/>}>
-                {/*
-          Status: Feature not implemented 
-          <Route path="/:id" element={<PostID />} /> 
-        */}
+            {/*
+                Status: Feature not implemented 
+                <Route path="/:id" element={<PostID />} /> 
+            */}
             </Route>
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/setting/" element={<SettingPage/>}/>
@@ -96,9 +96,6 @@ export const theme = createTheme({
                 })
             }
         }
-    },
-    typography: {
-        fontFamily: 'JetBrains Mono',
     },
 });
 
