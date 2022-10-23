@@ -80,7 +80,7 @@ export default function Posts() {
                                 {postdata.map((item: any) => (
                                     <>
                                         <Link to={"/post/" + item.id}>
-                                            <Card variant="outlined" key={item.id}>
+                                            <Card variant="outlined" key={item.id} sx={{wordWrap: "break-word"}}>
                                                 <CardContent>
                                                     <Typography variant="h5" component="div">{item.profiles.username}</Typography>
                                                     <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 0.2, sm: 0.2, md: 0.2 }}>
@@ -92,7 +92,7 @@ export default function Posts() {
                                                         {item.profiles.banned && <Badges isBanned />}
                                                     </Stack>
                                                     <Typography variant="body1" component="p">
-                                                        <ReactMarkdown components={{ h1: 'h3', }}>
+                                                        <ReactMarkdown>
                                                             {item.content}
                                                         </ReactMarkdown>
                                                     </Typography>

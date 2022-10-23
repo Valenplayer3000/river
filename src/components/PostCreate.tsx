@@ -35,7 +35,7 @@ export default function PostCreate() {
     const [userID, setUserID] = React.useState<string | undefined>(undefined)
 
     const ContentChange = (e: any) => {
-        if (e.target.value.length === 250) {
+        if (e.target.value.length === 1500) {
             window.alert("You have weached the chawactew wimit!")
         } else {
             setContent(e.target.value)

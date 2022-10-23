@@ -7,7 +7,8 @@ import {
     createRoutesFromElements,
     Navigate,
 } from "react-router-dom";
-import {createTheme, ThemeProvider, experimental_sx as sx} from '@mui/material/styles';
+
+import { createTheme, ThemeProvider, experimental_sx as sx } from '@mui/material/styles';
 
 import './index.css';
 
@@ -21,20 +22,21 @@ import Profile from './routes/settings/users/profile';
 import PostID from "./routes/post/PostID"
 import About from './routes/settings/misc/About';
 import BlogsPage from './routes/blogs/index';
-import {CssBaseline} from '@mui/material';
+import { CssBaseline } from '@mui/material';
+;
 
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" errorElement={<ErrorPage/>} element={<App/>}>
-            <Route index element={<Navigate replace to="/post"/>}/>
-            <Route path="/post" element={<PostPage/>} />
-            <Route path="post/:id" element={<PostID />} /> 
-            <Route path="/signup" element={<Signup/>}/>
-            <Route path="/setting/" element={<SettingPage/>}/>
-            <Route path="/profile" element={<Profile/>}/>
-            <Route path="/about" element={<About/>}/>
-            <Route path="/blog" element={<BlogsPage/>}/>
-        </Route>
+            <Route path="/" errorElement={<ErrorPage />} element={<App />}>
+                <Route index element={<Navigate replace to="/post" />} />
+                <Route path="/post" element={<PostPage />} />
+                <Route path="post/:id" element={<PostID />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/setting/" element={<SettingPage />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/blog" element={<BlogsPage />} />
+            </Route>
     )
 )
 
@@ -78,17 +80,10 @@ export const theme = createTheme({
         },
     },
     components: {
-        MuiMenu: {
-            styleOverrides: {
-                root: sx({
-                    borderRadius: 3,
-                })
-            }
-        },
         MuiCard: {
             styleOverrides: {
                 root: sx({
-                    borderRadius: 3
+                    borderRadius: 2
                 })
             }
         }
@@ -101,9 +96,8 @@ root.render(
     <React.StrictMode>
         <ThemeProvider theme={theme}>
             <CssBaseline>
-                <RouterProvider router={router}/>
+                <RouterProvider router={router} />
             </CssBaseline>
         </ThemeProvider>
-
     </React.StrictMode>
 );
