@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom"
 
-import LoginPage from "../login/index"
+import LoginPage from "./login/index"
 
 import {
     AppBar,
@@ -91,7 +91,7 @@ export default function Navbar() {
                     </Link>
                 </DialogActions>
             </Dialog>
-            <AppBar>
+            <AppBar elevation={0}>
                 <Toolbar>
                     <Menu id="main" anchorEl={MenuAnchor} open={MenuOpen} onClose={handleClose}>
                         {!session ? (
