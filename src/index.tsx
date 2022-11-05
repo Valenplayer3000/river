@@ -43,50 +43,41 @@ const router = createBrowserRouter(
 
 export const theme = createTheme({
     palette: {
-        mode: 'dark',
+        mode: 'light',
         primary: {
-            main: '#b4befe',
-            dark: '#b4befe'
+            main: '#1e66f5',
+            light: '#1e66f5'
         },
         secondary: {
-            main: '#f5e0dc',
-            dark: '#f5e0dc'
+            main: '#179299',
+            dark: '#179299'
         },
         background: {
-            default: '#1e1e2e',
-            paper: '#313244',
+            default: '#eff1f5',
+            paper: '#ccd0da',
         },
-        divider: '#6c7086',
+        divider: '#9caobe',
         success: {
-            main: '#a6e3a1',
-            dark: '#a6e3a1'
+            main: '#40a02b',
+            light: '#40a02b'
         },
         text: {
-            primary: '#cdd6f4',
-            disabled: '#a6adc8',
-            secondary: '#bac2de'
+            primary: '#4c4f69',
+            disabled: '#5c5f77',
+            secondary: '#6c6f85'
         },
         error: {
-            main: '#f38ba8',
-            dark: '#f38ba8'
+            main: '#d20f39',
+            light: '#d20f39'
         },
         warning: {
-            main: '#fab387',
-            dark: '#fab387'
+            main: '#df8e1d',
+            light: '#df8e1d'
         },
         info: {
-            main: '#89dceb',
-            dark: '#89dceb'
+            main: '#bcc0cc',
+            light: '#bcc0cc'
         },
-    },
-    components: {
-        MuiCard: {
-            styleOverrides: {
-                root: sx({
-                    borderRadius: 2
-                })
-            }
-        }
     },
 });
 
