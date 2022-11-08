@@ -27,6 +27,7 @@ import {
     PersonAdd,
     Settings,
     Article,
+    Explore,
 } from "@mui/icons-material";
 
 import { supabase } from "../lib/supabase";
@@ -42,14 +43,6 @@ export default function Navbar() {
 
     const handleLoginSignDialogClose = () => {
         setLoginSignDialog(false)
-    }
-
-    const handleSettingDialogOpen = () => {
-        setSettingDialog(true)
-    }
-
-    const handleSettingDialogClose = () => {
-        setSettingDialog(false)
     }
 
     const [MenuAnchor, setMenuAnchor] = React.useState<null | HTMLElement>(null);
@@ -96,6 +89,12 @@ export default function Navbar() {
                     <Menu id="main" anchorEl={MenuAnchor} open={MenuOpen} onClose={handleClose}>
                         {!session ? (
                             <>
+                                <MenuItem disabled={true} onClick={handleClose}>
+                                    <ListItemIcon>
+                                        <Explore fontSize="small" />
+                                    </ListItemIcon>
+                                    Discover (Experimental)
+                                </MenuItem>
                                 <MenuItem onClick={handleLoginSignDialogOpen}>
                                     <ListItemIcon>
                                         <Login fontSize="small" />
@@ -105,6 +104,14 @@ export default function Navbar() {
                             </>
                         ) : (
                             <>
+                                <Link to="/discover">
+                                    <MenuItem onClick={handleClose}>
+                                        <ListItemIcon>
+                                            <Explore fontSize="small" />
+                                        </ListItemIcon>
+                                        Discover  (Experimental)
+                                    </MenuItem>
+                                </Link>
                                 <MenuItem onClick={() => supabase.auth.signOut()}>
                                     <ListItemIcon>
                                         <Logout fontSize="small" />
@@ -137,7 +144,7 @@ export default function Navbar() {
                             <Settings fontSize="small" />
                         </IconButton>
                     </Link>
-                    
+
                 </Toolbar>
             </AppBar>
         </>

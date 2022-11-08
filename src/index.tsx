@@ -23,6 +23,9 @@ import PostID from "./routes/post/PostID"
 import About from './routes/settings/misc/About';
 import BlogsPage from './routes/blogs/index';
 import { CssBaseline } from '@mui/material';
+import Discover from './routes/discover';
+import Verifications from './routes/settings/verifications';
+import Donations from './routes/settings/donations';
 ;
 
 const router = createBrowserRouter(
@@ -36,6 +39,9 @@ const router = createBrowserRouter(
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/blog" element={<BlogsPage />} />
+                <Route path="/discover" element={<Discover />} />
+                <Route path="/verify" element={<Verifications />} />
+                <Route path="/donate" element={<Donations />} />
             </Route>
     )
 )

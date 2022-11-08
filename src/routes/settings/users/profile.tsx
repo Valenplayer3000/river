@@ -3,7 +3,7 @@ import Badges from "../../../components/Badges"
 
 import { supabase } from "../../../lib/supabase"
 
-import { Box, TextField, Button, FormGroup, Typography, Stack, Card, CardContent, Alert, } from "@mui/material"
+import { Box, TextField, Button, FormGroup, Typography, Stack, Card, CardContent, Alert, CardHeader, } from "@mui/material"
 
 export default function Profile() {
     const [Uservalue, setUserValue] = React.useState(0)
@@ -92,17 +92,17 @@ export default function Profile() {
             ) : (
                 <>
                     <Box>
-                        <FormGroup sx={{m:1}}>
+                        <FormGroup sx={{ m: 2 }}>
                             <TextField
                                 value={newUsername || ""}
-                                placeholder="New Username"
+                                label="New Username"
                                 onChange={(e) => {
                                     setNewUsername(e.target.value);
                                     console.log(e.target.value);
                                 }}
                             />
                         </FormGroup>
-                        <FormGroup sx={{m:1}}>
+                        <FormGroup sx={{ m: 2 }}>
                             <TextField
                                 label="Website to show on profile"
                                 onChange={(e) => {
@@ -114,16 +114,18 @@ export default function Profile() {
                         <Button
                             className="container-div"
                             onClick={handleSubmit}
-                            variant="contained"
+                            variant="outlined"
                             disabled={loading}
                         >
                             Change Data
                         </Button>
                     </Box>
                     <Box sx={{ m: 2 }}>
-                        <Card elevation={5} sx={{ display: 'flex' }}>
+                        <Card elevation={5}>
+                            <CardHeader title={newUsername || currentUsername} />
                             <CardContent>
-                                <Typography variant="h5">{newUsername || currentUsername} <Stack gap={0.1} direction="row"><Badges isDev isMod isVerified isDonator /></Stack></Typography>
+                                <Stack direction="row"><Badges isDev isMod isVerified isDonator /></Stack>
+
                                 <Typography variant="body1">Hello River!</Typography>
                             </CardContent>
                         </Card>

@@ -29,7 +29,7 @@ export default function Posts() {
             const { data, status, error } = await supabase
                 .from("Posts")
                 .select(
-                    "id, content, profiles ( username, creator, verified, donator, moderator, dev)"
+                    "id, content, profiles ( username, creator, verified, donator, moderator, dev, furry)"
                 )
                 .order("id", { ascending: false });
 
@@ -90,6 +90,7 @@ export default function Posts() {
                                                         {item.profiles.dev && <Badges isDev />}
                                                         {item.profiles.donator && <Badges isDonator />}
                                                         {item.profiles.banned && <Badges isBanned />}
+                                                        {item.profiles.furry && <Badges isFurry />}
                                                     </Stack>
                                                     <Typography variant="body1" component="p">
                                                         <ReactMarkdown>

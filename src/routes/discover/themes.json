@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "theme_name": "Pastel Blue",
+        "theme_author": "Bloom",
+        "theme_description": "A themes with pastel blue as primary :3",
+        "primary": "#d1e3ff"
+    },
+    {
+        "id": 2,
+        "theme_name": "Catppuccin Mocha - Blue",
+        "theme_author": "Bloom",
+        "theme_description": "A River theme with blue as primary",
+        "primary": "#89b4fa"
+    },
+    {
+        "id": 3,
+        "theme_name": "Catppuccin Mocha - Rosewater",
+        "theme_author": "Bloom",
+        "theme_description": "A River theme with rosewater as primary",
+        "primary": "#f5e0dc"
+    },
+    {
+        "id": 4,
+        "theme_name": "Catppuccin Latte - Rosewater",
+        "theme_author": "Bloom",
+        "theme_description": "A River theme with rosewater as primary",
+        "primary": "#dc8a78"
+    },
+    {
+        "id": 5,
+        "theme_name": "Catppuccin Latte - Pink",
+        "theme_author": "Bloom",
+        "theme_description": "A River theme with pink as primary",
+        "primary": "#ea76cb"
+    },
+    {
+        "id": 6,
+        "theme_name": "Catppuccin Mocha - Peach",
+        "theme_author": "Bloom",
+        "theme_description": "A River theme with Peach as primary",
+        "primary": "#fab387"
+    }
+]

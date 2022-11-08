@@ -8,9 +8,10 @@ interface badges {
     isDonator?: any;
     isMod?: any;
     isBanned?: any;
+    isFurry?: any;
 }
 
-export default function Badges({ isCreator, isDev, isVerified, isDonator, isMod, isBanned} : badges){
+export default function Badges({ isCreator, isDev, isVerified, isDonator, isMod, isBanned, isFurry} : badges){
     return (
         <>
             <Stack direction="row" spacing={1.5}>
@@ -27,6 +28,7 @@ export default function Badges({ isCreator, isDev, isVerified, isDonator, isMod,
 
                 {isBanned && (<Chip color="error" size="small" label="Banned"/>)}
 
+                {isFurry && (<Chip color="primary" size="small" label="Furry"/>)}
             </Stack>
         </>
     )
