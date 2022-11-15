@@ -9,32 +9,6 @@ import { Octokit } from "octokit"
 import themejson from "./themes.json"
 
 export default function Discover() {
-
-    const [loading, SetLoading] = React.useState<boolean>(false)
-    const [error, SetError] = React.useState<boolean>(false)
-
-    const octokit = new Octokit()
-
-    async function FetchUser() {
-        try {
-            SetLoading(true)
-            SetError(false)
-            const result = await octokit.request("GET /repos/{owner}/{repos}", { owner: "valenplayer3000", repo: "river-themes", header: {"content-type": "text/json"}})
-            if (result) console.log(result);
-        }
-        catch (error) {
-            SetLoading(false)
-            SetError(true)
-        }
-        finally {
-            SetLoading(false)
-        }
-    }
-
-    React.useEffect(() => {
-        FetchUser()
-    },
-        []);
     return (
         <>
             <Container>
@@ -72,25 +46,7 @@ export default function Discover() {
                     <Typography variant="h5"><WebAsset /> Tending Themes</Typography>
                 </Box>
                 <Stack gap={0.5}>
-                    {loading ? (<CircularProgress sx={{marginInline: 'auto'}} />) : (
-                        <>
-                            {error ? (<Alert sx={{marginInline: 'auto'}} severity="error">Unable to load themes</Alert>) : (
-                                <>
-                                    {themejson.map(e => (
-                                        <Card key={e.id} sx={{ background: `${e.primary}`, color: "inherit" }} variant="outlined">
-                                            <CardHeader title={e.theme_name} subheader={e.theme_author} />
-                                            <CardContent>
-                                                {e.theme_description}
-                                            </CardContent>
-                                            <CardActions>
-                                                <Button color="inherit" href={e.link}>Get {e.theme_name}</Button>
-                                            </CardActions>
-                                        </Card>
-                                    ))}
-                                </>
-                            )}
-                        </>
-                    )}
+                    <Alert severity="info">Coming Soon</Alert>
                 </Stack>
             </Container>
         </>
