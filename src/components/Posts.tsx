@@ -56,7 +56,7 @@ export default function Posts() {
                 {loading ? (
                     <>
                         <Container maxWidth="md" fixed>
-                            <Card variant="outlined">
+                            <Card>
                                 <CardContent>
                                     <Skeleton variant="text" animation="wave" sx={{ fontSize: '2rem' }} />
                                     <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 0.1, sm: 0.2, md: 0.3 }}>
@@ -80,7 +80,7 @@ export default function Posts() {
                                 {postdata.map((item: any) => (
                                     <>
                                         <Link to={"/post/" + item.id}>
-                                            <Card variant="outlined" key={item.id} sx={{wordWrap: "break-word"}}>
+                                            <Card key={item.id} sx={{wordWrap: "break-word"}}>
                                                 <CardContent>
                                                     <Typography variant="h5" component="div">{item.profiles.username}</Typography>
                                                     <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 0.2, sm: 0.2, md: 0.2 }}>
@@ -109,7 +109,7 @@ export default function Posts() {
                 {error ? (
                     <>
                         <Container>
-                            <Card variant="outlined" sx={{ p: 2 }}>
+                            <Card sx={{ p: 2 }}>
                                 <div className="forcecenter">
                                     <Alert sx={{ m: 1 }} variant="filled" severity="error">Something wwong when weaching the database! ({`>`}~{`<`})</Alert>{" "}
                                     <Alert sx={{ m: 1 }} variant="filled" severity="info">

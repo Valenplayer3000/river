@@ -7,10 +7,7 @@ import { useParams } from "react-router"
 
 import { supabase } from "../../lib/supabase"
 
-import Comment from "../../components/Comments"
-
 export default function PostID() {
-    const [post, setPost] = React.useState<any>()
     const [loading, setLoading] = React.useState<boolean>(false)
 
     const [name, setName] = React.useState<string>("");
@@ -20,6 +17,7 @@ export default function PostID() {
     const [moderator, setModerator] = React.useState<boolean>(false);
     const [dev, setDev] = React.useState<boolean>(false);
     const [creator, setCreator] = React.useState<boolean>(false)
+    const [furry, setFurry] = React.useState<boolean>(false)
     const [banned, setBanned] = React.useState<boolean>(false)
 
     const { id } = useParams();
@@ -28,7 +26,7 @@ export default function PostID() {
         try {
             const { data, status, error } = await supabase
                 .from("Posts")
-                .select("id, content, user_id ( username, creator, verified, donator, moderator, dev, banned)")
+                .select("id, content, user_id ( username, creator, verified, donator, moderator, dev, banned, furry)")
                 .eq("id", id)
                 .single();
 
@@ -47,6 +45,7 @@ export default function PostID() {
                 setDev(data.user_id.dev);
                 setCreator(data.user_id.creator);
                 setBanned(data.user_id.banned);
+                setFurry(data.user_id.furry);
             }
         }
 
@@ -76,6 +75,7 @@ export default function PostID() {
                         {dev && <Badges isDev />}
                         {donator && <Badges isDonator />}
                         {banned && <Badges isBanned />}
+                        {furry && <Badges isFurry />}
                     </Stack>
                     <Typography variant="body1" component="p">
                         <ReactMarkdown>
@@ -84,8 +84,6 @@ export default function PostID() {
                     </Typography>
                 </CardContent>
             </Card>
-
-            <Comment/>
         </>
     )
 }

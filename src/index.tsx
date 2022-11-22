@@ -49,41 +49,7 @@ const router = createBrowserRouter(
 
 export const theme = createTheme({
     palette: {
-        mode: 'light',
-        primary: {
-            main: '#1e66f5',
-            light: '#1e66f5'
-        },
-        secondary: {
-            main: '#179299',
-            dark: '#179299'
-        },
-        background: {
-            default: '#eff1f5',
-            paper: '#ccd0da',
-        },
-        divider: '#9caobe',
-        success: {
-            main: '#40a02b',
-            light: '#40a02b'
-        },
-        text: {
-            primary: '#4c4f69',
-            disabled: '#5c5f77',
-            secondary: '#6c6f85'
-        },
-        error: {
-            main: '#d20f39',
-            light: '#d20f39'
-        },
-        warning: {
-            main: '#df8e1d',
-            light: '#df8e1d'
-        },
-        info: {
-            main: '#bcc0cc',
-            light: '#bcc0cc'
-        },
+        mode: 'light'
     },
 });
 
@@ -92,7 +58,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
     <React.StrictMode>
         <ThemeProvider theme={theme}>
-            <CssBaseline>
+            <CssBaseline enableColorScheme>
                 <RouterProvider router={router} />
             </CssBaseline>
         </ThemeProvider>
