@@ -54,7 +54,7 @@ export default function LoginPage() {
           <form onSubmit={handleLogin}>
             <FormGroup>
               {succes ? (
-                <Alert sx={{m:1}} severity="success">
+                <Alert sx={{m:1}} variant="outlined" severity="success">
                   Successfully Logged in
                 </Alert>
               ) : null}
