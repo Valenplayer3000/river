@@ -47,7 +47,7 @@ export default function PostCreate() {
             setLoading(true);
             setError("")
 
-            const user: any = supabase.auth.user();
+            const user: any = supabase.auth.getUser();
             const {data, status, error} = await supabase
                 .from("profiles")
                 .select("username")
@@ -100,9 +100,9 @@ export default function PostCreate() {
     };
 
     React.useEffect(() => {
-        setSession(supabase.auth.session());
+        setSession(supabase.auth.getSession());
 
-        supabase.auth.onAuthStateChange((_event, session) => {
+        supabase.auth.onAuthStateChange((_event: any, session: any) => {
             setSession(session);
         })
 
