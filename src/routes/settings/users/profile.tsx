@@ -25,7 +25,7 @@ export default function Profile() {
         try {
             setLoading(true);
             setCurrentUsername(null);
-            const user: any = supabase.auth.user();
+            const user: any = supabase.auth.getUser();
 
             const { data, status, error } = await supabase
                 .from("profiles")
@@ -76,7 +76,7 @@ export default function Profile() {
     React.useEffect(() => {
         setSession(supabase.auth.getSession());
 
-        supabase.auth.onAuthStateChange((_event, session) => {
+        supabase.auth.onAuthStateChange((_event: any, session: any) => {
             setSession(session);
         });
 
