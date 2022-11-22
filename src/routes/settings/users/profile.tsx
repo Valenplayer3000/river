@@ -49,7 +49,7 @@ export default function Profile() {
     async function handleSubmit() {
         try {
             setLoading(true);
-            const user = supabase.auth.user();
+            const user = supabase.auth.getUser();
 
             const updates = {
                 id: user?.id,
@@ -74,7 +74,7 @@ export default function Profile() {
     }
 
     React.useEffect(() => {
-        setSession(supabase.auth.session());
+        setSession(supabase.auth.getSession());
 
         supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session);
