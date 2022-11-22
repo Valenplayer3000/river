@@ -57,7 +57,7 @@ export default function PostCreate() {
             if (error && status !== 406) {
                 throw error;
             }
-
+            //@ts-ignore
             setName(data.username);
             setUserID(user.id);
 
