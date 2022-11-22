@@ -59,7 +59,7 @@ export default function Navbar() {
     const [session, setSession] = React.useState<any>(null);
 
     React.useEffect(() => {
-        setSession(supabase.auth.session());
+        setSession(supabase.auth.getSession());
 
         supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session);
