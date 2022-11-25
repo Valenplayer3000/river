@@ -1,11 +1,11 @@
 import { GitHub } from "@mui/icons-material";
-import { Alert, Card, CardContent, CardHeader, Typography, Paper } from "@mui/material";
+import { Alert, Card, CardContent, CardHeader, Typography } from "@mui/material";
 
 export default function aboutRiverPage() {
     return (
         <>
             <Card variant="outlined">
-                <CardHeader title="River" subheader="Version 1.8" />
+                <CardHeader title="River" subheader="Version 1.9" />
                 <CardContent>
                     <Typography>
                         This project was done using React 18 right now. And it developed by Bloom. Who care about that.

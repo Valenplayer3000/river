@@ -1,4 +1,3 @@
-import * as React from "react";
 import {Chip, Stack} from "@mui/material";
 
 interface badges {

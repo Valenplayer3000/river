@@ -134,11 +134,9 @@ export default function Navbar() {
                     <IconButton onClick={handleOpen} color="inherit">
                         <AccountCircle />
                     </IconButton>
-                    <Link className="white" to="/blog">
-                        <IconButton color="inherit">
-                            <Article fontSize="small" />
-                        </IconButton>
-                    </Link>
+                    <IconButton href="#" color="inherit">
+                        <Article fontSize="small" />
+                    </IconButton>
                     <Link className="white" to="/setting">
                         <IconButton color="inherit">
                             <Settings fontSize="small" />

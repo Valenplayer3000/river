@@ -1,12 +1,6 @@
-import * as React from "react"
-
 import { TrendingUp, WebAsset, Groups } from "@mui/icons-material";
-import { Typography, Card, CardHeader, CardContent, CardMedia, colors, Stack, CardActions, Button, ButtonGroup, CircularProgress, Alert } from "@mui/material";
+import { Typography, Card, CardHeader, CardContent, Stack, Alert } from "@mui/material";
 import { Box, Container } from "@mui/system";
-
-import { Octokit } from "octokit"
-
-import themejson from "./themes.json"
 
 export default function Discover() {
     return (
