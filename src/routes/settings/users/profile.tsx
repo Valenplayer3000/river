@@ -13,9 +13,7 @@ export default function Profile() {
     }
 
     const [session, setSession] = React.useState<any>(null);
-    const [currentUsername, setCurrentUsername] = React.useState<
-        string | null | undefined
-    >(null);
+    const [currentUsername, setCurrentUsername] = React.useState<string | null | undefined>(null);
     const [username, setUsername] = React.useState<string>(currentUsername || "");
     const [newUsername, setNewUsername] = React.useState<string>("");
     const [website, setWebsite] = React.useState<string>("");
