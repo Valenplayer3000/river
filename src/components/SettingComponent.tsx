@@ -1,6 +1,9 @@
 import { Collapse } from 'antd'
+import { InfoCircleOutlined, CreditCardOutlined, CheckOutlined } from '@ant-design/icons';
+
 import AboutComponent from './AboutComponent'
-import { InfoCircleOutlined } from '@ant-design/icons';
+import DonationComponent from './DonationComponent';
+import VerificationComponent from './VerificationComponent';
 
 const { Panel } = Collapse;
 
@@ -9,11 +12,11 @@ export default function Setting() {
     return (
         <>
             <Collapse>  
-                <Panel extra={<InfoCircleOutlined/>} header="Donation" key="1">
-                    <AboutComponent />
+                <Panel extra={<CreditCardOutlined/>} header="Donation" key="1">
+                    <DonationComponent />
                 </Panel>
-                <Panel extra={<InfoCircleOutlined/>} header="Verification" key="2">
-                    <AboutComponent />
+                <Panel extra={<CheckOutlined/>} header="Verification" key="2">
+                    <VerificationComponent />
                 </Panel>
                 <Panel extra={<InfoCircleOutlined/>} header="About River" key="3">
                     <AboutComponent />

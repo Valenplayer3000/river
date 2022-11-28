@@ -88,47 +88,49 @@ export default function App() {
         <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0, zIndex: 1 }}>
           <div className="logo" />
           <Menu mode="inline" theme="dark" defaultSelectedKeys={['1']}>
-            <Menu.Item icon={<HomeOutlined />} key="1">
-              Home
-            </Menu.Item>
-            <Menu.Item onClick={OpenDiscoverModal} icon={<CompassOutlined />} key="2">
-              Discover
-            </Menu.Item>
-            <Menu.Item icon={<PaperClipOutlined />} key="3">
-              Blog
-            </Menu.Item>
-            {session ? (
-              <>
-                <Menu.SubMenu icon={<UserOutlined />} title="Account" >
-                  <Menu.Item onClick={OpenProfileModal}>
-                    Profile
-                  </Menu.Item>
-                  <Menu.Item onClick={() => supabase.auth.signOut()}>
-                    Logout
-                  </Menu.Item>
-                  <Menu.Item disabled>
-                    Sign Up
-                  </Menu.Item>
-                </Menu.SubMenu>
-              </>
-            ) : (
-              <>
-                <Menu.SubMenu icon={<UserOutlined />} title="Account" >
-                  <Menu.Item disabled>
-                    Profile
-                  </Menu.Item>
-                  <Menu.Item onClick={OpenLoginModal}>
-                    Login
-                  </Menu.Item>
-                  <Menu.Item onClick={OpenSignUpModal}>
-                    Sign Up
-                  </Menu.Item>
-                </Menu.SubMenu>
-              </>
-            )}
-            <Menu.Item icon={<SettingOutlined />} onClick={OpenSettingModal}>
-              Setting
-            </Menu.Item>
+            <>
+              <Menu.Item icon={<HomeOutlined />} key="1">
+                Home
+              </Menu.Item>
+              <Menu.Item onClick={OpenDiscoverModal} icon={<CompassOutlined />} key="2">
+                Discover
+              </Menu.Item>
+              <Menu.Item icon={<PaperClipOutlined />} key="3">
+                Blog
+              </Menu.Item>
+              {session ? (
+                <>
+                  <Menu.SubMenu icon={<UserOutlined />} title="Account" >
+                    <Menu.Item onClick={OpenProfileModal}>
+                      Profile
+                    </Menu.Item>
+                    <Menu.Item onClick={() => supabase.auth.signOut()}>
+                      Logout
+                    </Menu.Item>
+                    <Menu.Item disabled>
+                      Sign Up
+                    </Menu.Item>
+                  </Menu.SubMenu>
+                </>
+              ) : (
+                <>
+                  <Menu.SubMenu icon={<UserOutlined />} title="Account" >
+                    <Menu.Item disabled>
+                      Profile
+                    </Menu.Item>
+                    <Menu.Item onClick={OpenLoginModal}>
+                      Login
+                    </Menu.Item>
+                    <Menu.Item onClick={OpenSignUpModal}>
+                      Sign Up
+                    </Menu.Item>
+                  </Menu.SubMenu>
+                </>
+              )}
+              <Menu.Item icon={<SettingOutlined />} onClick={OpenSettingModal}>
+                Setting
+              </Menu.Item>
+            </>
           </Menu>
         </Sider>
         <Layout className="site-layout" style={{ marginLeft: 90 }}>
@@ -156,7 +158,7 @@ export default function App() {
       </Modal>
 
       <Modal open={openDiscover} onCancel={CloseDiscoverModal} footer={null} title="Discover">
-        <DiscoverComponent/>
+        <DiscoverComponent />
       </Modal>
     </>
   );
