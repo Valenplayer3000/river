@@ -137,7 +137,7 @@ export default function App() {
           <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
             <Outlet />
           </Content>
-          <Footer style={{ textAlign: 'center' }}>River v2.0 By Bloom </Footer>
+          <Footer style={{ textAlign: 'center' }}>River v2.0.1 By Bloom </Footer>
         </Layout>
       </Layout>
 
