@@ -1,23 +1,13 @@
 import * as React from "react"
-import {supabase} from "../lib/supabase"
+import { supabase } from "../lib/supabase"
 
-import {
-    CircularProgress,
-    Dialog,
-    DialogActions,
-    DialogTitle,
-    TextField,
-    DialogContent,
-    Button,
-    Fab,
-} from "@mui/material"
+import { Modal, Input, FloatButton } from 'antd'
 
-import AddBox from "@mui/icons-material/AddBox";
+import { PlusOutlined } from "@ant-design/icons/";
 
-import {Close, Send} from "@mui/icons-material";
+const { TextArea } = Input;
 
-
-export default function PostCreate() {
+export default function NewPostComponent() {
     const [session, setSession]: any = React.useState(null);
     const [dialogOpen, setDialogOpen] = React.useState(false);
 
@@ -48,7 +38,7 @@ export default function PostCreate() {
             setError("")
 
             const user: any = supabase.auth.user();
-            const {data, status, error} = await supabase
+            const { data, status, error } = await supabase
                 .from("profiles")
                 .select("username")
                 .eq("id", user.id)
@@ -66,7 +56,7 @@ export default function PostCreate() {
             console.error(e.message || e.error_message);
         } finally {
             setLoading(false);
-            
+
         }
     }
 
@@ -84,7 +74,7 @@ export default function PostCreate() {
                 user_id: userID,
             };
 
-            let {error} = await supabase.from("Posts").upsert(updates, {
+            let { error } = await supabase.from("Posts").upsert(updates, {
                 returning: "minimal",
             });
 
@@ -114,42 +104,19 @@ export default function PostCreate() {
 
             {!session ? (
                 <>
-                    <Fab disabled onClick={handleDialogOpen}
-                         sx={{position: 'fixed', bottom: 14, right: 14}}>
-                        <AddBox/>
-                    </Fab>
+                    <FloatButton icon={<PlusOutlined />} tooltip="New Post" />
                 </>
             ) : (
                 <>
-                    <Fab color="secondary" variant="extended" onClick={handleDialogOpen}
-                         sx={{position: 'fixed', bottom: 14, right: 14}}>
-                        <AddBox />
-                        New Post
-                    </Fab>
+                    <FloatButton icon={<PlusOutlined />} tooltip="New Post" type="primary" onClick={handleDialogOpen} />
                 </>
             )}
 
-            <Dialog open={dialogOpen} onClose={handleDialogClose}>
-                <DialogTitle>New Post</DialogTitle>
-                {loading ? (<CircularProgress/>) : (
-                    <>
-                        <DialogContent>
-                            <form onSubmit={SendContent}>
-                                <TextField value={content || ""} onChange={(e) => ContentChange(e)}
-                                           placeholder="Write your own text/sentence" multiline fullWidth/>
-                                <DialogActions>
-                                    <Button startIcon={<Close/>} onClick={handleDialogClose}>
-                                        Close
-                                    </Button>
-                                    <Button startIcon={<Send/>} type="submit">
-                                        Send Post
-                                    </Button>
-                                </DialogActions>
-                            </form>
-                        </DialogContent>
-                    </>
-                )}
-            </Dialog>
+            <Modal title="New Post" open={dialogOpen} okText="Send" onOk={SendContent} onCancel={handleDialogClose} confirmLoading={loading}>
+                <>
+                    <TextArea style={{marginBottom: 30}} maxLength={1500} showCount autoSize rows={10} value={content || ""} onChange={(e) => ContentChange(e)} placeholder="Write your own text/sentence" />
+                </>
+            </Modal>
         </>
     )
 }

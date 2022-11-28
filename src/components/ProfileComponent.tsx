@@ -1,11 +1,11 @@
 import * as React from "react"
-import Badges from "../../../components/Badges"
+import Badges from "./BadgesComponent"
 
-import { supabase } from "../../../lib/supabase"
+import { supabase } from "../lib/supabase"
 
-import { Box, TextField, Button, FormGroup, Typography, Stack, Card, CardContent, Alert, CardHeader, } from "@mui/material"
+import {Input, Card, Button, Result} from 'antd'
 
-export default function Profile() {
+export default function ProfileComponent() {
     const [Uservalue, setUserValue] = React.useState(0)
 
     const hadnleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -85,49 +85,40 @@ export default function Profile() {
         <>
             {!session ? (
                 <>
-                    <Alert severity="warning">You need to sign in/sign up to enter profile page</Alert>
+                    <Result status="warning" title="You need to sign in/sign up to enter profile page" />
                 </>
             ) : (
                 <>
-                    <Box>
-                        <FormGroup sx={{ m: 2 }}>
-                            <TextField
+                            <Input
+                                style={{margin: 2}}
                                 value={newUsername || ""}
-                                label="New Username"
+                                placeholder="New Username"
                                 onChange={(e) => {
                                     setNewUsername(e.target.value);
                                     console.log(e.target.value);
                                 }}
                             />
-                        </FormGroup>
-                        <FormGroup sx={{ m: 2 }}>
-                            <TextField
-                                label="Website to show on profile"
+                            <Input
+                                style={{margin: 2}}
+                                placeholder="Website to show on profile"
                                 onChange={(e) => {
                                     setWebsite(e.target.value);
                                     console.log(e.target.value);
                                 }}
                             />
-                        </FormGroup>
                         <Button
+                            style={{margin: 2}}
                             className="container-div"
                             onClick={handleSubmit}
-                            variant="outlined"
-                            disabled={loading}
+                            loading={loading}
                         >
                             Change Data
                         </Button>
-                    </Box>
-                    <Box sx={{ m: 2 }}>
-                        <Card elevation={5}>
-                            <CardHeader title={newUsername || currentUsername} />
-                            <CardContent>
-                                <Stack direction="row"><Badges isDev isMod isVerified isDonator /></Stack>
-
-                                <Typography variant="body1">Hello River!</Typography>
-                            </CardContent>
+                        <Card style={{margin: 2}} title={newUsername || currentUsername}>
+                                <Badges isDev isMod isVerified isDonator isBanned isFurry />
+                                {""}
+                                Hello River!
                         </Card>
-                    </Box>
                 </>
             )}
         </>
