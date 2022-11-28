@@ -58,7 +58,6 @@ export default function PostComponent() {
                                 {postdata.map((item: any) => (
                                     <>
                                         <Col span={24}>
-                                            <Link to={"/post/" + item.id}>
                                                 <Card key={item.id} title={item.profiles.username} style={{ wordWrap: "break-word" }}>
                                                     {item.profiles.creator && <BadgesComponent isCreator />}
                                                     {item.profiles.verified && <BadgesComponent isVerified />}
@@ -71,7 +70,6 @@ export default function PostComponent() {
                                                         {item.content}
                                                     </ReactMarkdown>
                                                 </Card>
-                                            </Link>
                                         </Col>
                                     </>
                                 ))}

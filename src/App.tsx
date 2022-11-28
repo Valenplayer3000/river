@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Layout, Menu, Modal } from 'antd';
-import { HomeOutlined, PaperClipOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { HomeOutlined, PaperClipOutlined, SettingOutlined, UserOutlined, CompassOutlined } from '@ant-design/icons';
 
 import { Outlet } from 'react-router';
 
@@ -11,6 +11,7 @@ import LoginComponent from './components/LoginComponent';
 import Setting from './components/SettingComponent';
 import ProfileComponent from './components/ProfileComponent';
 import SignUpComponent from './components/SignUpComponent';
+import DiscoverComponent from './components/DiscoverComponent';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -57,6 +58,16 @@ export default function App() {
     setSignUpModal(false)
   }
 
+  const [openDiscover, setDiscoverModal] = React.useState(false)
+
+  const OpenDiscoverModal = () => {
+    setDiscoverModal(true)
+  }
+
+  const CloseDiscoverModal = () => {
+    setDiscoverModal(false)
+  }
+
   const [session, setSession] = React.useState<any>(null);
 
   React.useEffect(() => {
@@ -80,7 +91,10 @@ export default function App() {
             <Menu.Item icon={<HomeOutlined />} key="1">
               Home
             </Menu.Item>
-            <Menu.Item icon={<PaperClipOutlined />} key="2">
+            <Menu.Item onClick={OpenDiscoverModal} icon={<CompassOutlined />} key="2">
+              Discover
+            </Menu.Item>
+            <Menu.Item icon={<PaperClipOutlined />} key="3">
               Blog
             </Menu.Item>
             {session ? (
@@ -139,6 +153,10 @@ export default function App() {
 
       <Modal open={openProfile} onCancel={CloseProfileModal} footer={null} title="Profile">
         <ProfileComponent />
+      </Modal>
+
+      <Modal open={openDiscover} onCancel={CloseDiscoverModal} footer={null} title="Discover">
+        <DiscoverComponent/>
       </Modal>
     </>
   );
